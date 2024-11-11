@@ -1,3 +1,0 @@
-'Lee','1111','lee@lee.com',990909
-'Laa','2222','laa@laa.com',990808
-'Soo','3333','Soo@Soo.com',990707
