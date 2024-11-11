@@ -1,0 +1,27 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>list.html</title>
+</head>
+<body>
+    <h1>TEST - get list</h1>
+    <ul></ul>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="/js/api.js"></script>
+    <script>
+        $('h1').on('click', function(){
+            console.log('onclick');
+
+            apiService.sendToken({ url: 'http://localhost:8080/api/v1/sample/hellos',
+                                   name : 'accessToken'},
+                function(response){
+                    $.each(response, function(i, obj){
+                        $('ul').append('<li>' + obj + '</li>');
+                    })
+                });
+        });
+    </script>
+</body>
+</html>

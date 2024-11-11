@@ -1,0 +1,36 @@
+CREATE TABLE `reservation` (
+  `id` varchar(10) NOT NULL,
+  `training_id` varchar(10) NOT NULL,
+  `student_type_id` varchar(10) NOT NULL,
+  `reserved_date_time` datetime NOT NULL,
+  `name` varchar(10) NOT NULL,
+  `phone` varchar(45) NOT NULL,
+  `email_address` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `student_type_id_idx` (`student_type_id`),
+  KEY `training_id_idx` (`training_id`),
+  CONSTRAINT `student_type_id` FOREIGN KEY (`student_type_id`) REFERENCES `student_type` (`id`),
+  CONSTRAINT `training_id` FOREIGN KEY (`training_id`) REFERENCES `traning` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+SELECT * FROM testdb.reservation;
+INSERT INTO reservation VALUE ('r01', 't01', 'st01',
+				'2023-07-21 00:00:00', '김철수',
+				'090-0000-0000', 'taro@example.com');
+INSERT INTO reservation VALUE ('r02', 't01', 'st03',
+				'2023-07-20 00:00:00', '한빛나',
+				'080-0000-0000', 'jiro@example.com');
+
+
+
+CREATE TABLE `student_type` (
+  `id` varchar(10) NOT NULL,
+  `code` varchar(45) NOT NULL,
+  `name` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+SELECT * FROM testdb.student_type;
+INSERT INTO student_type VALUE ('st01','EMPLOYEE','직장인');
+INSERT INTO student_type VALUE ('st02','STUDENT','학생');
+INSERT INTO student_type VALUE ('st03','FREELANCE','프리랜서');

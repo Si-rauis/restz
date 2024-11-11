@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>reservation confirmation</title>
+</head>
+<body>
+    <h3>수강 신청 확인</h3>
+    <form th:action="@{/reservation/reserve}" method="post"
+          th:object="${reservationInput}">
+        <table>
+            <tr><th>이름 </th>
+                <td><span th:text="*{name}"/></span></td></tr>
+            <tr><th>전화번호 </th>
+                <td><span th:text="*{phone}"/></span></td></tr>
+            <tr><th>이메일 </th>
+                <td><span th:text="*{emailAddress}"/></span></td></tr>
+            <tr><th>수강생 유형 </th>
+                <td><span th:text="*{studentTypeCode}"></span></td></tr>
+
+            <tr><td colspan="2"><p>** 아래의 강의를 신청합니다. **</p></td></tr>
+            <tr><th>강의명 </th>
+                <td><span th:text="${training.title}"/></span></td></tr>
+            <tr><th>시작일 </th>
+                <td><span th:text="${training.startDateTime}"/></span></td></tr>
+            <tr><th>종료일</th>
+                <td><span th:text="${training.endDateTime}"/></span></td></tr>
+        </table>
+        <hr><!--서버로 전송할 데이터 -->
+		<input type="hidden" th:field="*{name}"/>
+        <input type="hidden" th:field="*{phone}"/>
+        <input type="hidden" th:field="*{emailAddress}"/>
+        <input type="hidden" th:field="*{studentTypeCode}"/>
+        <input type="hidden" th:field="*{trainingId}"/>
+
+        <input type="submit" name="reserve" value="신청 내용 확정"/>
+        <input type="submit" name="correct" value="신청 내용 변경"/>
+    </form>
+</body>
+</html>

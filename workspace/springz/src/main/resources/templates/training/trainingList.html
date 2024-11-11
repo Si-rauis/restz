@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>training list</title>
+</head>
+<body>
+<h3>getting List</h3>
+<table border="1">
+    <tr><th>강의명</th>
+        <th>시작일자 </th>
+        <th>신청인원 </th></tr>
+    <tr th:each="training:${trainingList}">
+        <td><a th:href="@{/training/display-details(trainingId=${training.id})}">
+            <span th:text="${training.title}"></span></a></td>
+        <td><span th:text="${#temporals.format(training.startDateTime,
+                                                   'yyyy/MM/dd HH:mm')}">
+                </span></td>
+        <td><span th:text="${training.reserved}"></span>명</td></tr>
+</table>
+</body>
+</html>
